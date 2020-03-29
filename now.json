@@ -1,4 +1,21 @@
 {
   "version": 2,
-  "alias": "esilv-denzel"
-}
+  "builds": [{ "src": "server/index.js", "use": "@now/node-server" }],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/server.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/movies",
+      "dest": "server/index.js",
+      "methods": ["GET"]
+    },
+    {
+      "src": "/movies/:id",
+      "dest": "server/index.js",
+      "methods": ["POST"]
+    }
+  ]
+} 

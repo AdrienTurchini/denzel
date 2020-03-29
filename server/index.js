@@ -35,6 +35,11 @@ app.listen(PORT, () => {
   });
 });
 
+// Home route
+app.get("/", (req, res) => {
+    res.send("Welcome to Denzel API by Adrien TURCHINI");
+  });
+
 /**
 * Populate the database with the movies from the imdb actor's id
 */
