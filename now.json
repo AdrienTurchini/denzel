@@ -4,17 +4,17 @@
   "routes": [
     {
       "src": "/",
-      "dest": "/server.js",
+      "dest": "/index.js",
       "methods": ["GET"]
     },
     {
       "src": "/movies",
-      "dest": "server/index.js",
+      "dest": "/index.js",
       "methods": ["GET"]
     },
     {
       "src": "/movies/:id",
-      "dest": "server/index.js",
+      "dest": "/index.js",
       "methods": ["POST"]
     }
   ]
