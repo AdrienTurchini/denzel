@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "builds": [{ "src": "server/index.js", "use": "@now/node-server" }],
+  "builds": [{ "src": "/index.js", "use": "@now/node-server" }],
   "routes": [
     {
       "src": "/",
-      "dest": "server/index.js",
+      "dest": "/index.js",
       "methods": ["GET"]
     },
     {
       "src": "/movies",
-      "dest": "server/index.js",
+      "dest": "/index.js",
       "methods": ["GET"]
     },
     {
       "src": "/movies/:id",
-      "dest": "server/index.js",
+      "dest": "/index.js",
       "methods": ["POST"]
     }
   ]
