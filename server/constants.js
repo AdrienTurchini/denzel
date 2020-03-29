@@ -4,7 +4,7 @@ const IMDB_URL = 'https://www.imdb.com';
 const P_LIMIT = 25;
 const PORT = '9292';
 const CONNECTION_URL = "mongodb+srv://admin:admin@adrix-rplru.mongodb.net/test?retryWrites=true&w=majority";
-const DATABASE_NAME = "movies";
+const DATABASE_NAME = "WebApplicationArchitecture";
 
 
 module.exports = {

@@ -7,6 +7,7 @@ const helmet = require('helmet');
 const {PORT} = require('./constants');
 const {DATABASE_NAME} = require('./constants');
 const {CONNECTION_URL} = require('./constants');
+const imdb = require('./imdb');
 
 const app = express();
 
@@ -28,7 +29,7 @@ app.listen(PORT, () => {
           throw error;
       }
       database = client.db(DATABASE_NAME);
-      collection = database.collection("denzel");
+      collection = database.collection("movies");
       console.log("Connected to " + DATABASE_NAME + "!");
       console.log(`📡 Running on port ${PORT}`);
   });
@@ -37,9 +38,10 @@ app.listen(PORT, () => {
 /**
 * Populate the database with the movies from the imdb actor's id
 */
-app.get("/movies/populate/:id", (request, response) => {
+app.get("/movies/populate/:id", async(request, response) => {
     const id = request.params.id;
-  collection.insert(request.body, (error, result) => {
+    const movies = await imdb(id);
+  collection.insert(movies, (error, result) => {
       if(error) {
           return response.status(500).send(error);
       }
