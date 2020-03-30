@@ -1,7 +1,0 @@
-{
-  "name": "denzel",
-  "version": 2,
-  "env": {
-    "MONGODB_URI": "mongodb+srv://admin:admin@adrix-rplru.mongodb.net/test?retryWrites=true&w=majority"
-  }
-}
