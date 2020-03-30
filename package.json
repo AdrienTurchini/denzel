@@ -4,7 +4,8 @@
   "description": "the must-watch Denzel's movies",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": ""
   },
   "author": "Adrien Turchini",
   "license": "ISC",
