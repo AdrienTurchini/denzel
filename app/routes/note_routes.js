@@ -1,40 +1,6 @@
-    const cors = require('cors');
-const express = require('express');
-const BodyParser = require("body-parser");
-const MongoClient = require("mongodb").MongoClient;
-const ObjectId = require("mongodb").ObjectID;
-const helmet = require('helmet');
-const {PORT} = require('./constants');
-const {DATABASE_NAME} = require('./constants');
-const {CONNECTION_URL} = require('./constants');
-const imdb = require('./imdb');
+const imdb = require('../../imdb');
 
-const app = express();
-
-module.exports = app;
-
-app.use(BodyParser.json());
-app.use(BodyParser.urlencoded({ extended: true }));
-
-app.use(cors());
-app.use(helmet());
-
-app.options('*', cors());
-
-var database, collection;
-
-app.listen(PORT, () => {
-  MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-      if(error) {
-          throw error;
-      }
-      database = client.db(DATABASE_NAME);
-      collection = database.collection("movies");
-      console.log("Connected to " + DATABASE_NAME + "!");
-      console.log(`📡 Running on port ${PORT}`);
-  });
-});
-
+module.exports = function(app, db) {
 // Home route
 app.get("/", (req, res) => {
     res.send("Welcome to Denzel API by Adrien TURCHINI");
@@ -135,8 +101,4 @@ app.post("/movies/:id", (request, response) => {
 
   
 });
-
-
-
- 
-
+}

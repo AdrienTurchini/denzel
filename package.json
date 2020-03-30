@@ -1,28 +1,19 @@
 {
   "name": "denzel",
   "version": "1.0.0",
-  "description": "> The must-watch Denzel's movies",
+  "description": "the must-watch Denzel's movies",
   "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "Adrien Turchini",
+  "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
-    "mongodb": "^3.5.5",
-    "nodemon": "^1.19.1"
+    "mongodb": "^3.5.5"
   },
-  "devDependencies": {},
-  "scripts": {
-    "start": "cd server && node index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/AdrienTurchini/denzel.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/AdrienTurchini/denzel/issues"
-  },
-  "homepage": "https://github.com/AdrienTurchini/denzel#readme"
+  "devDependencies": {
+    "nodemon": "^2.0.2"
+  }
 }
