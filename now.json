@@ -1,21 +1,7 @@
 {
+  "name": "denzel",
   "version": 2,
-  "builds": [{ "src": "server/index.js", "use": "@now/node-server" }],
-  "routes": [
-    {
-      "src": "/",
-      "dest": "server/index.js",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/movies",
-      "dest": "server/index.js",
-      "methods": ["GET"]
-    },
-    {
-      "src": "/movies/:id",
-      "dest": "server/index.js",
-      "methods": ["POST"]
-    }
-  ]
-} 
+  "env": {
+    "MONGODB_URI": "mongodb+srv://admin:admin@adrix-rplru.mongodb.net/test?retryWrites=true&w=majority"
+  }
+}
