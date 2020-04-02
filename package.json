@@ -1,44 +1,35 @@
 {
-  "name": "denzel",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.5.0",
-    "@testing-library/user-event": "^7.2.1",
-    "cors": "^2.8.5",
-    "express": "^4.17.1",
-    "http-proxy-middleware": "^1.0.3",
-    "mongoose": "^5.9.7",
-    "netlify-lambda": "^1.6.3",
-    "npm-run-all": "^4.1.5",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.1",
-    "serverless": "^1.67.0"
-  },
+  "name": "netlify-express",
+  "version": "0.0.1",
+  "description": "Example of how to deploy a Express.js Netlify app.",
+  "main": "functions/server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "start:lambda": "netlify-lambda serve src/lambda",
-    "build": "run-p build:**",
-    "build:app": "react-scripts build",
-    "build:lambda": "netlify-lambda build src/lambda",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "netlify-lambda build express",
+    "start": "nodemon server-local.js"
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neverendingqs/netlify-express.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [
+    "netlify",
+    "express.js"
+  ],
+  "author": "neverendingqs",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/neverendingqs/netlify-express/issues"
+  },
+  "homepage": "https://github.com/neverendingqs/netlify-express#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "mongoose": "^5.9.7"
+  },
+  "devDependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "netlify-lambda": "^1.6.3",
+    "nodemon": "^1.19.2",
+    "serverless-http": "^2.3.0"
   }
 }
