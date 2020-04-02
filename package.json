@@ -5,7 +5,7 @@
   "main": "functions/server.js",
   "scripts": {
     "build": "netlify-lambda build express",
-    "start": "nodemon server-local.js"
+    "start": "cd express && node server-local.js"
   },
   "repository": {
     "type": "git",

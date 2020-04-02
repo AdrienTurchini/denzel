@@ -142,26 +142,19 @@ async function addReview(req, res) {
 router.route('/movies/:id').post(addReview);
 //////////
 
-
-
 router.get('/', (req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html' });
   res.write('<h1>Bienvenue sur la site d\'Adrien Turchini.</h1>');
   res.write('<p>Vous pouvez accédez à une base de données MongoDB via les liens suivants :');
-  res.write('<p>Pour acceder à la liste de tous les films : </p>');
+  res.write('<p>Fetch a random must-match movie : http://denzelturchini.netlify.com/.netlify/functions/server/movies </p>');
+  res.write('<p>Populate the database with an Denzel\'s movies from IMDb. You can change the actor\'s id at the end of the url, nm0000243 is Denzel\'s id : http://denzelturchini.netlify.com/.netlify/functions/server/movies/populate/nm0000243</p>');
   res.end();
 });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use('/.netlify/functions/server', router);  // path must route to lambda
+app.use('/', router);
 app.use('/', (req, res) => res.sendFile(path.join(__dirname, '../index.html')));
-
-app.listen(PORT, () => {
-
-      console.log(`📡 Running on port ${PORT}`);
-
-});
 
 module.exports = app;
 module.exports.handler = serverless(app);
