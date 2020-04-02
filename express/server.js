@@ -75,9 +75,19 @@ async function fetchMovieSearch(req, res) {
         
         const query = {metascore: {$gt: metascore}};
         const movies = await Movies.find(query).sort({metascore: -1}).limit(limit);
+        const jsonMovie = JSON.stringify(movies);
+
+        /*
+        res.writeHead(200, { 'Content-Type': 'text/html'});
+    res.write(jsonMovie);
+    res.end();
+    */
+
+        
         res.status(200).json({
           movies
          });
+         
       }
       else {
         const movie = await Movies.findOne({"id": parameter});
@@ -102,10 +112,65 @@ async function fetchRandomMovie(req, res) {
   try {
     const query = {metascore: {$gt: 70}};
     const movie = await Movies.aggregate([{$match:query},{$sample: {size: 1}}]);
+    var jsonMovie = JSON.stringify(movie);
 
+    const indexLink = /link\"/;
+    const linkStart = jsonMovie.search(indexLink) + 7;
+    const linkStop = jsonMovie.indexOf('",', linkStart);
+    const link = jsonMovie.substring(linkStart, linkStop);
+    
+    const indexTitle = /title\"/;
+    const titleStart = jsonMovie.search(indexTitle) + 8;
+    const titleStop = jsonMovie.indexOf('(', titleStart);
+    const title = jsonMovie.substring(titleStart, titleStop);
+
+    const indexMeta = /metascore\"/;
+    const metaStart = jsonMovie.search(indexMeta) + 11;
+    const metaStop = jsonMovie.indexOf(',', metaStart);
+    const metascore = jsonMovie.substring(metaStart, metaStop); 
+
+    const indexPoster = /poster\"/;
+    const posterStart = jsonMovie.search(indexPoster) + 9;
+    const posterStop = jsonMovie.indexOf('",', posterStart);
+    const poster = jsonMovie.substring(posterStart, posterStop); 
+
+    const indexRating = /rating\"/;
+    const ratingStart = jsonMovie.search(indexRating) + 8;
+    const ratingStop = jsonMovie.indexOf(',', ratingStart);
+    const rating = jsonMovie.substring(ratingStart, ratingStop); 
+
+    const indexSyno = /synopsis\"/;
+    const synoStart = jsonMovie.search(indexSyno) + 11;
+    const synoStop = jsonMovie.indexOf(',', synoStart);
+    const synopsis = jsonMovie.substring(synoStart, synoStop); 
+
+    const indexVotes = /votes\"/;
+    const votesStart = jsonMovie.search(indexVotes) + 7;
+    const votesStop = jsonMovie.indexOf(',', votesStart);
+    const votes = jsonMovie.substring(votesStart, votesStop); 
+
+    const indexYear = /year\"/;
+    const yearStart = jsonMovie.search(indexYear) + 6;
+    const year = jsonMovie.substr(yearStart, 4); 
+
+
+
+    res.writeHead(200, { 'Content-Type': 'text/html'});
+    res.write('<h1>' + title + '</h1>');
+    res.write('<p>Metascore : ' + metascore + '</p>');
+    res.write('<p><a>IMDB Link : </a><a href="' + link + '">IMDB Link : ' + link + '</a></p>');
+    res.write('<p>Rating : ' + rating + '</p>');
+    res.write('<p>Synopsis : ' + synopsis + '</p>');
+    res.write('<p>Votes : ' + votes + '</p>');
+    res.write('<p>Year : ' + year + '</p>');
+    res.write('<p><img src="' + poster + '"></img></p>');
+  
+    res.end();
+    /*
     res.status(200).json({
      movie
     });
+    */
   } catch (err) {
     res.status(404).json({
       status: 'fail',
