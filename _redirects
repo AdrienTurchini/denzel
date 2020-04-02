@@ -1,4 +1,3 @@
 /movies                         /.netlify/functions/server/movies
 /movies/populate/:id            /.netlify/functions/server/movies/populate/:id
 /movies/:parameter              /.netlify/functions/server/movies/:parameter
-/movies/:parameter?limit=:x&metascore=:y             /.netlify/functions/server/movies/:parameter?limit=:x&metascore=:y
