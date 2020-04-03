@@ -22,14 +22,14 @@ Netlify is working well but for testing I suggest you to try using localhost bec
 
 ```sh
 online --
-curl https://denzelturchini.netlify.com/.netlify/functions/server/movies
+curl http://denzelturchini.netlify.com/.netlify/functions/server/movies
 curl http://denzelturchini.netlify.com/.netlify/functions/server/movies/tt0477080
 curl http://denzelturchini.netlify.com/.netlify/functions/server/movies/search?limit=5&metascore=77
 curl http://denzelturchini.netlify.com/.netlify/functions/server/movies/populate/nm0000243 -- not working because of Netlify free account limits
 curl -X POST -d '{"date": "2019-03-04", "review": "Very good movie"}' -H "Content-Type: application/json" http://denzelturchini.netlify.com/.netlify/functions/server/movies/tt0477080
 
 local --
-curl https://localhost:9292/.netlify/functions/server/movies
+curl http://localhost:9292/.netlify/functions/server/movies
 curl http://localhost:9292/.netlify/functions/server/movies/tt0477080
 curl http://localhost:9292/.netlify/functions/server/movies/search?limit=5&metascore=77
 curl http://localhost:9292/.netlify/functions/server/movies/populate/nm0000243
