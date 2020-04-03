@@ -1,13 +1,39 @@
 # DENZEL
 
-[index.html](index.html) simply loads html from the Express.js app using
-`<object>`, and the app is hosted at `/.netlify/functions/server`. Examples of
-how to access the Express.js endpoints:
+This project can be run in local using port 9292 using the command npm start in the root directory of the project. 
+You can also make request or go the the web pages online without running anything thanks to Netlify.
+
+Regarding to Netlify, the request time limit for free account is 10 seconds. This is less than the time required to populate the database with Denzel's movies so it won't work with Netlify but will using localhost:9292.
+
+You can make curl request using the shell or a client as insomnia or even use a web browser except for the post request. 
+
+The request will return json for /movies/search, /movies/populate/:id, /movies/:id (post request).
+The request will return an html page for /, /movies, /movies/:id (get request) in order for the informations to be readable.
+
+You can add optionnal parameters to the /movies/search request : limit (default = 5) and metascore (default = 0).
+
+In order to put the API online using netlify, the url are not /movies/xxxx but /.netlify/functions/server/movies/xxxx
+I've made some redirections when using netlify only. You will access .netlify/movies/functions/server/movies, .netlify/movies/functions/server/movies/:id and .netlify/movies/functions/server/movies/search if you search for /movies, /movies/:id and /movies/search but redirections won't work with query parameters for search (?limit=xx&metascore=xx because it can not be set with Netlify).
+
+Netlify is working well but for testing I suggest you to try using localhost because I've constated that Netlify doesn't always reponsing properly or loading elements correctly (poster etc.)
+
+[index.html](index.html) loads html from the Express.js app using
+`<object>`, and the app is hosted at `/.netlify/functions/server`.
 
 ```sh
-curl https://netlify-express.netlify.com/.netlify/functions/server
-curl https://netlify-express.netlify.com/.netlify/functions/server/another
-curl --header "Content-Type: application/json" --request POST --data '{"json":"POST"}' https://netlify-express.netlify.com/.netlify/functions/server
+online --
+curl https://denzelturchini.netlify.com/.netlify/functions/server/movies
+curl http://denzelturchini.netlify.com/.netlify/functions/server/movies/tt0477080
+curl http://denzelturchini.netlify.com/.netlify/functions/server/movies/search?limit=5&metascore=77
+curl http://denzelturchini.netlify.com/.netlify/functions/server/movies/populate/nm0000243 -- not working because of Netlify free account limits
+curl -X POST -d '{"date": "2019-03-04", "review": "Very good movie"}' -H "Content-Type: application/json" http://denzelturchini.netlify.com/.netlify/functions/server/movies/tt0477080
+
+local --
+curl https://localhost:9292/.netlify/functions/server/movies
+curl http://localhost:9292/.netlify/functions/server/movies/tt0477080
+curl http://localhost:9292/.netlify/functions/server/movies/search?limit=5&metascore=77
+curl http://localhost:9292/.netlify/functions/server/movies/populate/nm0000243
+curl -X POST -d '{"date": "2019-03-04", "review": "Very good movie"}' -H "Content-Type: application/json" http://localhost:9292/.netlify/functions/server/movies/tt0477080
 ```
 
 
