@@ -1,7 +1,7 @@
 # DENZEL
 
-This project can be run in local using port 9292 using the command npm start in the root directory of the project. 
-You can also make request or go the the web pages online without running anything thanks to Netlify.
+This project can be run in local with port 9292 using the command npm start in the root directory of the project. 
+You can also make request or go to the web pages online without running anything thanks to Netlify.
 
 Regarding to Netlify, the request time limit for free account is 10 seconds. This is less than the time required to populate the database with Denzel's movies so it won't work with Netlify but will using localhost:9292.
 
@@ -17,8 +17,7 @@ I've made some redirections when using netlify only. You will access .netlify/mo
 
 Netlify is working well but for testing I suggest you to try using localhost because I've constated that Netlify doesn't always reponsing properly or loading elements correctly (poster etc.)
 
-[index.html](index.html) loads html from the Express.js app using
-`<object>`, and the app is hosted at `/.netlify/functions/server`.
+You can find a "menu" with explanations for each url at http://denzelturchini.netlify.com/.netlify/functions/server or http://localhost:9292/.netlify/functions/server using localhost.
 
 ```sh
 online --
